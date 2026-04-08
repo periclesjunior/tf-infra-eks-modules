@@ -13,7 +13,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     host                   = module.eks_cluster.endpoint
     cluster_ca_certificate = base64decode(module.eks_cluster.certificate_authority)
     exec {
