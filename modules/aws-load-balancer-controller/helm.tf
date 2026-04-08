@@ -5,23 +5,22 @@ resource "helm_release" "eks_helm_controller" {
   version    = "1.4.7"
   namespace  = "kube-system"
 
-  set = {
-    name  = "clusterName"
-    value = var.cluster_name
-  }
-
-  set = {
-    name  = "serviceAccount.create"
-    value = "false"
-  }
-
-  set = {
-    name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
-  }
-
-  set = {
-    name  = "vpcId"
-    value = var.vpc_id
-  }
+  set = [
+    {
+      name  = "clusterName"
+      value = var.cluster_name
+    },
+    {
+      name  = "serviceAccount.create"
+      value = "false"
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "vpcId"
+      value = var.vpc_id
+    }
+  ]
 }
