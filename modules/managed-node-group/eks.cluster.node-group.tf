@@ -14,13 +14,19 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
 
   launch_template {
     id      = aws_launch_template.eks_nodes.id
-    version = "$Latest"
+    version = aws_launch_template.eks_nodes.latest_version
   }
 
   scaling_config {
     desired_size = 1
     max_size     = 1
     min_size     = 1
+  }
+
+  labels = {
+    "role"   = "app"
+    "environment" = "DEV"
+    "kind" = "ON_DEMAND"
   }
 
   tags = merge(
