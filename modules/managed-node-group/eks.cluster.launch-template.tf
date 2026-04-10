@@ -12,3 +12,4 @@ resource "aws_launch_template" "eks_nodes" {
       delete_on_termination = true
     }
   }
+}
