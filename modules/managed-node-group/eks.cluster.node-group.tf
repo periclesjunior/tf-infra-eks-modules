@@ -18,24 +18,6 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
     min_size     = 1
   }
 
-  create_launch_template = true
-  launch_template_name   = "app"
-  bootstrap_extra_args   = "--use-max-pods=false --kubelet-extra-args=--max-pods=110"
-
-  block_device_mappings = {
-    xvda = {
-      device_name = "/dev/xvda"
-      ebs = {
-        volume_size           = 20
-        volume_type           = "gp3"
-        iops                  = 3000
-        throughput            = 150
-        encrypted             = true
-        delete_on_termination = true
-      }
-    }
-  }
-
   tags = merge(
     var.tags,
     {
