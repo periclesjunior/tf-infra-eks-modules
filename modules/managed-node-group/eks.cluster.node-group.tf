@@ -12,6 +12,11 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
   instance_types         = ["t3.medium"]
   capacity_type          = "ON_DEMAND"
 
+  launch_template {
+    id      = aws_launch_template.eks_nodes.id
+    version = "$Latest"
+  }
+
   scaling_config {
     desired_size = 1
     max_size     = 1
