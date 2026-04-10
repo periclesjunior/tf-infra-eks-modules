@@ -6,7 +6,7 @@ resource "aws_eks_cluster" "eks_cluster" {
     authentication_mode = "API"
   }
 
-  version  = "1.34"
+  version  = "1.35"
 
   vpc_config {
     subnet_ids = [
