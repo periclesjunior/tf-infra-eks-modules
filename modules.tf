@@ -21,6 +21,9 @@ module "eks_managed_node_group" {
   private_subnet_1b  = module.eks_network.priv_subnet_1b
   tags               = var.tags
   auto_scale_options = var.auto_scale_options
+  ami_type           = var.ami_type
+  instance_types     = var.instance_types
+  capacity_type      = var.capacity_type
 }
 
 module "eks_aws_load_balancer_controller" {

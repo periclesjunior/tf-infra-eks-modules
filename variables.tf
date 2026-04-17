@@ -32,3 +32,21 @@ variable "auto_scale_options" {
   }
   description = "Cluster Autoscaling Settings"
 }
+
+variable "ami_type" {
+  type        = string
+  default     = "AL2023_x86_64_STANDARD"
+  description = "AMI type"
+}
+
+variable "instance_types" {
+  type        = list(string)
+  default     = ["t3.medium"]
+  description = "Instance types"
+}
+
+variable "capacity_type" {
+  type        = string
+  default     = "ON_DEMAND"
+  description = "Capacity type"
+}

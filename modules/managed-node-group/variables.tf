@@ -31,3 +31,18 @@ variable "auto_scale_options" {
   })
   description = "Cluster Autoscaling Settings"
 }
+
+variable "ami_type" {
+  type        = string
+  description = "AMI type"
+}
+
+variable "instance_types" {
+  type        = list(string)
+  description = "Instance types"
+}
+
+variable "capacity_type" {
+  type        = string
+  description = "Capacity type"
+}
