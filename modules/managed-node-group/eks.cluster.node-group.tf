@@ -8,6 +8,7 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
     var.private_subnet_1b
   ]
 
+  disk_size              = var.disk_size
   ami_type               = var.ami_type
   instance_types         = var.instance_types
   capacity_type          = var.capacity_type

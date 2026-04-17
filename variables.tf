@@ -50,3 +50,9 @@ variable "capacity_type" {
   default     = "ON_DEMAND"
   description = "Capacity type"
 }
+
+variable "disk_size" {
+  type        = string
+  default     = "100"
+  description = "Disk size"
+}

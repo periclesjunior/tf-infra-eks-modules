@@ -46,3 +46,8 @@ variable "capacity_type" {
   type        = string
   description = "Capacity type"
 }
+
+variable "disk_size" {
+  type        = string
+  description = "Disk size"
+}
