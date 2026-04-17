@@ -14,12 +14,13 @@ module "eks_cluster" {
 }
 
 module "eks_managed_node_group" {
-  source            = "./modules/managed-node-group"
-  project_name      = var.project_name
-  cluster_name      = module.eks_cluster.cluster_name
-  private_subnet_1a = module.eks_network.priv_subnet_1a
-  private_subnet_1b = module.eks_network.priv_subnet_1b
-  tags              = var.tags
+  source             = "./modules/managed-node-group"
+  project_name       = var.project_name
+  cluster_name       = module.eks_cluster.cluster_name
+  private_subnet_1a  = module.eks_network.priv_subnet_1a
+  private_subnet_1b  = module.eks_network.priv_subnet_1b
+  tags               = var.tags
+  auto_scale_options = var.auto_scale_options
 }
 
 module "eks_aws_load_balancer_controller" {
