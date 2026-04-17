@@ -18,9 +18,9 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
   }
 
   scaling_config {
-    desired_size = var.auto_scale_options.min
+    min_size     = var.auto_scale_options.min
     max_size     = var.auto_scale_options.max
-    min_size     = var.auto_scale_options.desired
+    desired_size = var.auto_scale_options.desired
   }
 
   labels = {
