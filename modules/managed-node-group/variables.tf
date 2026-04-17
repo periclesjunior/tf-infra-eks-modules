@@ -22,3 +22,12 @@ variable "private_subnet_1b" {
   type        = string
   description = "Subnet ID from AZ 1b"
 }
+
+variable "auto_scale_options" {
+  type = object({
+    min     = number
+    max     = number
+    desired = number
+  })
+  description = "Cluster Autoscaling Settings"
+}

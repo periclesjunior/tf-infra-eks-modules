@@ -18,3 +18,17 @@ variable "tags" {
   type        = map(any)
   description = "A map of tags to add to all AWS resources"
 }
+
+variable "auto_scale_options" {
+  type = object({
+    min     = number
+    max     = number
+    desired = number
+  })
+  default = {
+    min     = 1
+    max     = 1
+    desired = 1
+  }
+  description = "Cluster Autoscaling Settings"
+}
