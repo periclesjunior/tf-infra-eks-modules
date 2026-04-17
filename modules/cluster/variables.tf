@@ -20,6 +20,5 @@ variable "public_subnet_1b" {
 
 variable "cluster_version" {
   type        = string
-  description = "Cluster version"
+  description = ""
 }
-
