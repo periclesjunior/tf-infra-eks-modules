@@ -11,6 +11,7 @@ module "eks_cluster" {
   tags             = var.tags
   public_subnet_1a = module.eks_network.pub_subnet_1a
   public_subnet_1b = module.eks_network.pub_subnet_1b
+  version          = var.cluster_version
 }
 
 module "eks_managed_node_group" {

@@ -56,3 +56,9 @@ variable "disk_size" {
   default     = "100"
   description = "Disk size"
 }
+
+variable "cluster_version" {
+  type        = string
+  default     = "1.35"
+  description = "Cluster Version"
+}
