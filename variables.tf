@@ -1,25 +1,26 @@
 variable "cidr_block" {
-  type        = string
   description = "Networking CIDR block to be used for the VPC"
+  type        = string
 }
 
 variable "project_name" {
-  type        = string
   description = "Project name to be used to name the resources (Name tag)"
+  type        = string
 }
 
 variable "region" {
+  description = "AWS region to create the resources"
   type        = string
   default     = "us-east-1"
-  description = "AWS region to create the resources"
 }
 
 variable "tags" {
-  type        = map(any)
   description = "A map of tags to add to all AWS resources"
+  type        = map(any)
 }
 
 variable "auto_scale_options" {
+  description = "Cluster Autoscaling Settings"
   type = object({
     min     = number
     max     = number
@@ -30,47 +31,46 @@ variable "auto_scale_options" {
     max     = 1
     desired = 1
   }
-  description = "Cluster Autoscaling Settings"
 }
 
 variable "ami_type" {
+  description = "AMI type"
   type        = string
   default     = "AL2023_x86_64_STANDARD"
-  description = "AMI type"
 }
 
 variable "instance_types" {
+  description = "Instance types"
   type        = list(string)
   default     = ["t3.medium"]
-  description = "Instance types"
 }
 
 variable "capacity_type" {
+  description = "Capacity type"
   type        = string
   default     = "ON_DEMAND"
-  description = "Capacity type"
 }
 
 variable "disk_size" {
+  description = "Disk size"
   type        = string
   default     = "100"
-  description = "Disk size"
 }
 
 variable "cluster_version" {
+  description = "Cluster Version"
   type        = string
   default     = "1.35"
-  description = "Cluster Version"
 }
 
 variable "endpoint_private_access" {
+  description = "Endpoint private access"
   type        = string
   default     = "true"
-  description = "Endpoint private access"
 }
 
 variable "endpoint_public_access" {
+  description = "Endpoint public access"
   type        = string
   default     = "true"
-  description = "Endpoint public access"
 }
