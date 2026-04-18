@@ -1,24 +1,24 @@
 variable "project_name" {
-  type        = string
   description = "Project name to be used to name the resources (Name tag)"
+  type        = string
 }
 
 variable "tags" {
-  type        = map(any)
   description = "Tags to be added to AWS resources"
+  type        = map(any)
 }
 
 variable "oidc" {
-  type        = string
   description = "HTTPS URL from OIDC provider of the EKS cluster"
+  type        = string
 }
 
 variable "cluster_name" {
-  type        = string
   description = "EKS cluster name"
+  type        = string
 }
 
 variable "vpc_id" {
-  type        = string
   description = "VPC ID"
+  type        = string
 }
