@@ -62,3 +62,15 @@ variable "cluster_version" {
   default     = "1.35"
   description = "Cluster Version"
 }
+
+variable "endpoint_private_access" {
+  type        = string
+  default     = "true"
+  description = "Endpoint private access"
+}
+
+variable "endpoint_public_access" {
+  type        = string
+  default     = "true"
+  description = "Endpoint public access"
+}

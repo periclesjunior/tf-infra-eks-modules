@@ -6,12 +6,14 @@ module "eks_network" {
 }
 
 module "eks_cluster" {
-  source           = "./modules/cluster"
-  project_name     = var.project_name
-  tags             = var.tags
-  public_subnet_1a = module.eks_network.pub_subnet_1a
-  public_subnet_1b = module.eks_network.pub_subnet_1b
-  cluster_version  = var.cluster_version 
+  source                  = "./modules/cluster"
+  project_name            = var.project_name
+  tags                    = var.tags
+  public_subnet_1a        = module.eks_network.pub_subnet_1a
+  public_subnet_1b        = module.eks_network.pub_subnet_1b
+  cluster_version         = var.cluster_version
+  endpoint_private_access = var.endpoint_private_access
+  endpoint_public_access  = var.endpoint_public_access
 }
 
 module "eks_managed_node_group" {

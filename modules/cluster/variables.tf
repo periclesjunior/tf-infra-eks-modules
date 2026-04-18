@@ -20,5 +20,16 @@ variable "public_subnet_1b" {
 
 variable "cluster_version" {
   type        = string
-  description = ""
+  description = "EKS Cluster Version"
 }
+
+variable "endpoint_private_access" {
+  type        = string
+  description = "Endpoint private access"
+}
+
+variable "endpoint_public_access" {
+  type        = string
+  description = "Endpoint public access"
+}
+
