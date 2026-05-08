@@ -14,6 +14,7 @@ module "eks_cluster" {
   cluster_version         = var.cluster_version
   endpoint_private_access = var.endpoint_private_access
   endpoint_public_access  = var.endpoint_public_access
+  access_entries          = var.access_entries
 }
 
 module "eks_managed_node_group" {

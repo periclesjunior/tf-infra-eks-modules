@@ -32,3 +32,20 @@ variable "endpoint_public_access" {
   description = "Endpoint public access"
   type        = string
 }
+
+variable "access_entries" {
+  description = "Map of IAM principals to grant access to the EKS cluster"
+  type = map(object({
+    principal_arn     = string
+    type              = optional(string, "STANDARD")
+    kubernetes_groups = optional(list(string))
+    policy_associations = optional(map(object({
+      policy_arn = string
+      access_scope = object({
+        type       = string
+        namespaces = optional(list(string), [])
+      })
+    })), {})
+  }))
+  default = {}
+}
