@@ -45,6 +45,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_access_entries"></a> [access\_entries](#input\_access\_entries) | Map of IAM principals to grant access to the EKS cluster | <pre>map(object({<br/>    principal_arn     = string<br/>    type              = optional(string, "STANDARD")<br/>    kubernetes_groups = optional(list(string))<br/>    policy_associations = optional(map(object({<br/>      policy_arn = string<br/>      access_scope = object({<br/>        type       = string<br/>        namespaces = optional(list(string), [])<br/>      })<br/>    })), {})<br/>  }))</pre> | `{}` | no |
 | <a name="input_ami_type"></a> [ami\_type](#input\_ami\_type) | AMI type | `string` | `"AL2023_x86_64_STANDARD"` | no |
 | <a name="input_auto_scale_options"></a> [auto\_scale\_options](#input\_auto\_scale\_options) | Cluster Autoscaling Settings | <pre>object({<br/>    min     = number<br/>    max     = number<br/>    desired = number<br/>  })</pre> | <pre>{<br/>  "desired": 1,<br/>  "max": 1,<br/>  "min": 1<br/>}</pre> | no |
 | <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type | `string` | `"ON_DEMAND"` | no |
