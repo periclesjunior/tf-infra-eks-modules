@@ -39,3 +39,13 @@ module "eks_aws_load_balancer_controller" {
   cluster_name = module.eks_cluster.cluster_name
   vpc_id       = module.eks_network.vpc_id
 }
+
+module "eks_aws_addons" {
+  source                  = "./modules/cluster-addons"
+  project_name            = var.project_name
+  tags                    = var.tags
+  cluster_name            = module.eks_cluster.cluster_name
+  addon_coredns_version   = var.addon_coredns_version
+  addon_kubeproxy_version = var.addon_kubeproxy_version
+  addon_cni_version       = var.addon_cni_version
+}

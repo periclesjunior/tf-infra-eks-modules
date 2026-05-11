@@ -91,3 +91,19 @@ variable "access_entries" {
   }))
   default = {}
 }
+
+variable "addon_coredns_version" {
+  description = "CoreDNS addon version"
+  type        = string
+  
+}
+
+variable "addon_kubeproxy_version" {
+  description = "Kube-Proxy addon version"
+  type        = string
+}
+
+variable "addon_cni_version" {
+  description = "VPC CNI addon version"
+  type        = string
+}
