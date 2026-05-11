@@ -32,9 +32,11 @@ No providers.
 
 | Name | Source | Version |
 | ---- | ------ | ------- |
+| <a name="module_eks_aws_addons"></a> [eks\_aws\_addons](#module\_eks\_aws\_addons) | ./modules/cluster-addons | n/a |
 | <a name="module_eks_aws_load_balancer_controller"></a> [eks\_aws\_load\_balancer\_controller](#module\_eks\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
 | <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | ./modules/cluster | n/a |
 | <a name="module_eks_managed_node_group"></a> [eks\_managed\_node\_group](#module\_eks\_managed\_node\_group) | ./modules/managed-node-group | n/a |
+| <a name="module_eks_metrics_server"></a> [eks\_metrics\_server](#module\_eks\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_eks_network"></a> [eks\_network](#module\_eks\_network) | ./modules/network | n/a |
 
 ## Resources
@@ -46,6 +48,9 @@ No resources.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_access_entries"></a> [access\_entries](#input\_access\_entries) | Map of IAM principals to grant access to the EKS cluster | <pre>map(object({<br/>    principal_arn     = string<br/>    type              = optional(string, "STANDARD")<br/>    kubernetes_groups = optional(list(string))<br/>    policy_associations = optional(map(object({<br/>      policy_arn = string<br/>      access_scope = object({<br/>        type       = string<br/>        namespaces = optional(list(string), [])<br/>      })<br/>    })), {})<br/>  }))</pre> | `{}` | no |
+| <a name="input_addon_cni_version"></a> [addon\_cni\_version](#input\_addon\_cni\_version) | VPC CNI addon version | `string` | n/a | yes |
+| <a name="input_addon_coredns_version"></a> [addon\_coredns\_version](#input\_addon\_coredns\_version) | CoreDNS addon version | `string` | n/a | yes |
+| <a name="input_addon_kubeproxy_version"></a> [addon\_kubeproxy\_version](#input\_addon\_kubeproxy\_version) | Kube-Proxy addon version | `string` | n/a | yes |
 | <a name="input_ami_type"></a> [ami\_type](#input\_ami\_type) | AMI type | `string` | `"AL2023_x86_64_STANDARD"` | no |
 | <a name="input_auto_scale_options"></a> [auto\_scale\_options](#input\_auto\_scale\_options) | Cluster Autoscaling Settings | <pre>object({<br/>    min     = number<br/>    max     = number<br/>    desired = number<br/>  })</pre> | <pre>{<br/>  "desired": 1,<br/>  "max": 1,<br/>  "min": 1<br/>}</pre> | no |
 | <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type | `string` | `"ON_DEMAND"` | no |
