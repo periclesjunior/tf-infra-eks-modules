@@ -95,7 +95,7 @@ variable "access_entries" {
 variable "addon_coredns_version" {
   description = "CoreDNS addon version"
   type        = string
-  
+
 }
 
 variable "addon_kubeproxy_version" {

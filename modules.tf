@@ -38,6 +38,10 @@ module "eks_aws_load_balancer_controller" {
   oidc         = module.eks_cluster.oidc
   cluster_name = module.eks_cluster.cluster_name
   vpc_id       = module.eks_network.vpc_id
+  depends_on = [
+    module.eks_cluster,
+    module.eks_managed_node_group
+  ]
 }
 
 module "eks_aws_addons" {
@@ -48,4 +52,21 @@ module "eks_aws_addons" {
   addon_coredns_version   = var.addon_coredns_version
   addon_kubeproxy_version = var.addon_kubeproxy_version
   addon_cni_version       = var.addon_cni_version
+  depends_on = [
+    module.eks_cluster,
+    module.eks_managed_node_group,
+    module.eks_aws_load_balancer_controller
+  ]
 }
+
+module "eks_metrics_server" {
+  source       = "./modules/metrics-server"
+  project_name = var.project_name
+  tags         = var.tags
+  depends_on = [
+    module.eks_cluster,
+    module.eks_managed_node_group,
+    module.eks_aws_load_balancer_controller
+  ]
+}
+
