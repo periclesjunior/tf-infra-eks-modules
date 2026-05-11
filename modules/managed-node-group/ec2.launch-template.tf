@@ -1,5 +1,5 @@
 resource "aws_launch_template" "eks_nodes" {
-  name_prefix = "eks-storage-nodes-"
+  name_prefix = "eks-custom-nodes-"
 
   block_device_mappings {
     device_name = "/dev/xvda"
