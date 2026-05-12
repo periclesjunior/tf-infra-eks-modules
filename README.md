@@ -35,6 +35,7 @@ No providers.
 | <a name="module_eks_aws_addons"></a> [eks\_aws\_addons](#module\_eks\_aws\_addons) | ./modules/cluster-addons | n/a |
 | <a name="module_eks_aws_load_balancer_controller"></a> [eks\_aws\_load\_balancer\_controller](#module\_eks\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
 | <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | ./modules/cluster | n/a |
+| <a name="module_eks_kube_state_metrics"></a> [eks\_kube\_state\_metrics](#module\_eks\_kube\_state\_metrics) | ./modules/kube-state-metrics | n/a |
 | <a name="module_eks_managed_node_group"></a> [eks\_managed\_node\_group](#module\_eks\_managed\_node\_group) | ./modules/managed-node-group | n/a |
 | <a name="module_eks_metrics_server"></a> [eks\_metrics\_server](#module\_eks\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_eks_network"></a> [eks\_network](#module\_eks\_network) | ./modules/network | n/a |
