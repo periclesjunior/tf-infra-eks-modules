@@ -70,3 +70,13 @@ module "eks_metrics_server" {
   ]
 }
 
+module "eks_kube_state_metrics" {
+  source       = "./modules/kube-state-metrics"
+  project_name = var.project_name
+  tags         = var.tags
+  depends_on = [
+    module.eks_cluster,
+    module.eks_managed_node_group,
+    module.eks_aws_load_balancer_controller
+  ]
+}
