@@ -80,3 +80,17 @@ module "eks_kube_state_metrics" {
     module.eks_aws_load_balancer_controller
   ]
 }
+
+module "eks_velero" {
+  source       = "./modules/velero"
+  project_name = var.project_name
+  cluster_name = module.eks_cluster.cluster_name
+  oidc         = module.eks_cluster.oidc
+  region       = var.region
+  tags         = var.tags
+  depends_on = [
+    module.eks_cluster,
+    module.eks_managed_node_group,
+    module.eks_aws_load_balancer_controller
+  ]
+}
