@@ -6,9 +6,6 @@ resource "aws_eks_addon" "coredns" {
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
 
-#  depends_on = [
-#    aws_eks_access_entry.nodes
-#  ]
 }
 
 resource "aws_eks_addon" "kubeproxy" {
@@ -19,9 +16,6 @@ resource "aws_eks_addon" "kubeproxy" {
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
 
-#  depends_on = [
-#    aws_eks_access_entry.nodes
-#  ]
 }
 
 resource "aws_eks_addon" "cni" {
@@ -32,7 +26,16 @@ resource "aws_eks_addon" "cni" {
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
 
-#  depends_on = [
-#    aws_eks_access_entry.nodes
-#  ]
+}
+
+resource "aws_eks_addon" "ebs_csi" {
+  cluster_name = var.cluster_name
+  addon_name   = "aws-ebs-csi-driver"
+
+  addon_version               = var.addon_ebs_csi_version
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
+
+  service_account_role_arn = aws_iam_role.ebs_csi_controller.arn
+
 }

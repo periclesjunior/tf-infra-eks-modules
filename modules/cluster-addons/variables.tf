@@ -13,6 +13,11 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "oidc" {
+  description = "HTTPS URL from OIDC provider of the EKS cluster"
+  type        = string
+}
+
 variable "addon_coredns_version" {
   description = "CoreDNS addon version"
   type        = string
@@ -31,8 +36,7 @@ variable "addon_cni_version" {
   default     = "v1.21.1-eksbuild.8"
 }
 
-#variable "addon_xpto_version" {
-#  description = "Versão do Addon do xpto"
-#  type        = string
-#  default     = ""
-#}
+variable "addon_ebs_csi_version" {
+  description = "EBS CSI addon version"
+  type        = string
+}

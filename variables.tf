@@ -107,3 +107,8 @@ variable "addon_cni_version" {
   description = "VPC CNI addon version"
   type        = string
 }
+
+variable "addon_ebs_csi_version" {
+  description = "EBS CSI addon version"
+  type        = string
+}

@@ -49,9 +49,12 @@ module "eks_aws_addons" {
   project_name            = var.project_name
   tags                    = var.tags
   cluster_name            = module.eks_cluster.cluster_name
+  oidc                    = module.eks_cluster.oidc
   addon_coredns_version   = var.addon_coredns_version
   addon_kubeproxy_version = var.addon_kubeproxy_version
   addon_cni_version       = var.addon_cni_version
+  addon_ebs_csi_version   = var.addon_ebs_csi_version
+
   depends_on = [
     module.eks_cluster,
     module.eks_self_managed_node_group,
