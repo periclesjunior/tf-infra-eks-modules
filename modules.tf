@@ -17,8 +17,8 @@ module "eks_cluster" {
   access_entries          = var.access_entries
 }
 
-module "eks_self_managed_node_group" {
-  source             = "./modules/self-managed-node-group"
+module "eks_managed_node_group" {
+  source             = "./modules/managed-node-group"
   project_name       = var.project_name
   cluster_name       = module.eks_cluster.cluster_name
   private_subnet_1a  = module.eks_network.priv_subnet_1a
@@ -40,7 +40,7 @@ module "eks_aws_load_balancer_controller" {
   vpc_id       = module.eks_network.vpc_id
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group
+    module.eks_managed_node_group
   ]
 }
 
@@ -57,7 +57,7 @@ module "eks_aws_addons" {
 
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group,
+    module.eks_managed_node_group,
     module.eks_aws_load_balancer_controller
   ]
 }
@@ -68,7 +68,7 @@ module "eks_metrics_server" {
   tags         = var.tags
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group,
+    module.eks_managed_node_group,
     module.eks_aws_load_balancer_controller
   ]
 }
@@ -79,7 +79,7 @@ module "eks_kube_state_metrics" {
   tags         = var.tags
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group,
+    module.eks_managed_node_group,
     module.eks_aws_load_balancer_controller
   ]
 }
@@ -93,7 +93,7 @@ module "eks_velero" {
   tags         = var.tags
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group,
+    module.eks_managed_node_group,
     module.eks_aws_load_balancer_controller
   ]
 }
@@ -107,7 +107,7 @@ module "eks_cluster_autoscaler" {
   tags         = var.tags
   depends_on = [
     module.eks_cluster,
-    module.eks_self_managed_node_group,
+    module.eks_managed_node_group,
     module.eks_aws_lb_controller,
     module.eks_metrics_server
   ]

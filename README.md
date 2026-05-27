@@ -37,9 +37,9 @@ No providers.
 | <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | ./modules/cluster | n/a |
 | <a name="module_eks_cluster_autoscaler"></a> [eks\_cluster\_autoscaler](#module\_eks\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
 | <a name="module_eks_kube_state_metrics"></a> [eks\_kube\_state\_metrics](#module\_eks\_kube\_state\_metrics) | ./modules/kube-state-metrics | n/a |
+| <a name="module_eks_managed_node_group"></a> [eks\_managed\_node\_group](#module\_eks\_managed\_node\_group) | ./modules/managed-node-group | n/a |
 | <a name="module_eks_metrics_server"></a> [eks\_metrics\_server](#module\_eks\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_eks_network"></a> [eks\_network](#module\_eks\_network) | ./modules/network | n/a |
-| <a name="module_eks_self_managed_node_group"></a> [eks\_self\_managed\_node\_group](#module\_eks\_self\_managed\_node\_group) | ./modules/self-managed-node-group | n/a |
 | <a name="module_eks_velero"></a> [eks\_velero](#module\_eks\_velero) | ./modules/velero | n/a |
 
 ## Resources
