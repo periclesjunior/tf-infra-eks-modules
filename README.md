@@ -35,6 +35,7 @@ No providers.
 | <a name="module_eks_aws_addons"></a> [eks\_aws\_addons](#module\_eks\_aws\_addons) | ./modules/cluster-addons | n/a |
 | <a name="module_eks_aws_load_balancer_controller"></a> [eks\_aws\_load\_balancer\_controller](#module\_eks\_aws\_load\_balancer\_controller) | ./modules/aws-load-balancer-controller | n/a |
 | <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | ./modules/cluster | n/a |
+| <a name="module_eks_cluster_autoscaler"></a> [eks\_cluster\_autoscaler](#module\_eks\_cluster\_autoscaler) | ./modules/cluster-autoscaler | n/a |
 | <a name="module_eks_kube_state_metrics"></a> [eks\_kube\_state\_metrics](#module\_eks\_kube\_state\_metrics) | ./modules/kube-state-metrics | n/a |
 | <a name="module_eks_metrics_server"></a> [eks\_metrics\_server](#module\_eks\_metrics\_server) | ./modules/metrics-server | n/a |
 | <a name="module_eks_network"></a> [eks\_network](#module\_eks\_network) | ./modules/network | n/a |
@@ -65,7 +66,9 @@ No resources.
 | <a name="input_instance_types"></a> [instance\_types](#input\_instance\_types) | Instance types | `list(string)` | <pre>[<br/>  "t3.medium"<br/>]</pre> | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name to be used to name the resources (Name tag) | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region to create the resources | `string` | `"us-east-1"` | no |
+| <a name="input_service_ipv4_cidr"></a> [service\_ipv4\_cidr](#input\_service\_ipv4\_cidr) | The CIDR block to assign Kubernetes pod and service IP addresses | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all AWS resources | `map(any)` | n/a | yes |
+| <a name="input_vpc_additional_cidrs"></a> [vpc\_additional\_cidrs](#input\_vpc\_additional\_cidrs) | List of additional VPC CIDRs | `list(string)` | n/a | yes |
 
 ## Outputs
 
