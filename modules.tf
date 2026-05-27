@@ -97,3 +97,18 @@ module "eks_velero" {
     module.eks_aws_load_balancer_controller
   ]
 }
+
+module "eks_cluster_autoscaler" {
+  source       = "./modules/cluster-autoscaler"
+  project_name = var.project_name
+  cluster_name = module.eks_cluster.cluster_name
+  oidc         = module.eks_cluster.oidc
+  region       = var.region
+  tags         = var.tags
+  depends_on = [
+    module.eks_cluster,
+    module.eks_self_managed_node_group,
+    module.eks_aws_lb_controller,
+    module.eks_metrics_server
+  ]
+}
