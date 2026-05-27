@@ -3,6 +3,11 @@ variable "cidr_block" {
   type        = string
 }
 
+variable "vpc_additional_cidrs" {
+  description = "List of additional VPC CIDRs"
+  type        = list(string)
+}
+
 variable "project_name" {
   description = "Project name to be used to name the resources (Name tag)"
   type        = string
@@ -110,5 +115,10 @@ variable "addon_cni_version" {
 
 variable "addon_ebs_csi_version" {
   description = "EBS CSI addon version"
+  type        = string
+}
+
+variable "service_ipv4_cidr" {
+  description = "The CIDR block to assign Kubernetes pod and service IP addresses "
   type        = string
 }
