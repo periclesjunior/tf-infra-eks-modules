@@ -108,7 +108,7 @@ module "eks_cluster_autoscaler" {
   depends_on = [
     module.eks_cluster,
     module.eks_managed_node_group,
-    module.eks_aws_lb_controller,
+    module.eks_aws_load_balancer_controller,
     module.eks_metrics_server
   ]
 }
