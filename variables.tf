@@ -3,11 +3,6 @@ variable "cidr_block" {
   type        = string
 }
 
-variable "vpc_additional_cidrs" {
-  description = "List of additional VPC CIDRs"
-  type        = list(string)
-}
-
 variable "public_subnets" {
   description = "List of VPC Public Subnets"
   type = list(object({
