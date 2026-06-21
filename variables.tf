@@ -3,6 +3,29 @@ variable "cidr_block" {
   type        = string
 }
 
+variable "vpc_additional_cidrs" {
+  description = "List of additional VPC CIDRs"
+  type        = list(string)
+}
+
+variable "public_subnets" {
+  description = "List of VPC Public Subnets"
+  type = list(object({
+    name              = string
+    cidr              = string
+    availability_zone = string
+  }))
+}
+
+variable "private_subnets" {
+  description = "List of VPC Private Subnets"
+  type = list(object({
+    name              = string
+    cidr              = string
+    availability_zone = string
+  }))
+}
+
 variable "project_name" {
   description = "Project name to be used to name the resources (Name tag)"
   type        = string
