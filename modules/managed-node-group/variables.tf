@@ -13,14 +13,9 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "private_subnet_1a" {
-  description = "Subnet ID from AZ 1a"
-  type        = string
-}
-
-variable "private_subnet_1b" {
-  type        = string
-  description = "Subnet ID from AZ 1b"
+variable "subnet_ids" {
+  description = "Lits subnets ids"
+  type        = list(string)
 }
 
 variable "auto_scale_options" {

@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks_cluster" {
-  name     = "${var.project_name}-cluster"
+  name     = var.project_name
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   access_config {
@@ -10,12 +10,14 @@ resource "aws_eks_cluster" "eks_cluster" {
   version = var.cluster_version
 
   vpc_config {
-    subnet_ids = [
-      var.public_subnet_1a,
-      var.public_subnet_1b
-    ]
+    subnet_ids = var.subnet_ids
+
     endpoint_private_access = var.endpoint_private_access
     endpoint_public_access  = var.endpoint_public_access
+  }
+
+  kubernetes_network_config {
+    service_ipv4_cidr = var.service_ipv4_cidr
   }
 
   depends_on = [
@@ -25,7 +27,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.project_name}-cluster"
+      Name = "${var.project_name}"
     }
   )
 }

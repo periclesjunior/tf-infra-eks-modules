@@ -8,14 +8,9 @@ variable "tags" {
   type        = map(any)
 }
 
-variable "public_subnet_1a" {
-  description = "Subnet to create EKS cluster AZ 1a"
-  type        = string
-}
-
-variable "public_subnet_1b" {
-  description = "Subnet to create EKS cluster AZ 1b"
-  type        = string
+variable "subnet_ids" {
+  description = "Lits subnets ids"
+  type        = list(string)
 }
 
 variable "cluster_version" {
@@ -48,4 +43,9 @@ variable "access_entries" {
     })), {})
   }))
   default = {}
+}
+
+variable "service_ipv4_cidr" {
+  description = "The CIDR block to assign Kubernetes pod and service IP addresses "
+  type        = string
 }
