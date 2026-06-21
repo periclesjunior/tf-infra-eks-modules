@@ -8,9 +8,9 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
     var.private_subnet_1b
   ]
 
-  ami_type               = var.ami_type
-  instance_types         = var.instance_types
-  capacity_type          = var.capacity_type
+  ami_type       = var.ami_type
+  instance_types = var.instance_types
+  capacity_type  = var.capacity_type
 
   launch_template {
     id      = aws_launch_template.eks_nodes.id
@@ -24,9 +24,9 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
   }
 
   labels = {
-    "role"   = "app"
+    "role"        = "app"
     "environment" = "DEV"
-    "kind" = "ON_DEMAND"
+    "kind"        = "ON_DEMAND"
   }
 
   tags = merge(

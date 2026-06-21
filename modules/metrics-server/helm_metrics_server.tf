@@ -9,8 +9,8 @@ resource "helm_release" "metrics_server" {
 
   set = [
     {
-     name  = "apiService.create"
-     value = "true"
+      name  = "apiService.create"
+      value = "true"
     }
   ]
 }
