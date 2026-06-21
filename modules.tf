@@ -3,7 +3,6 @@ module "eks_network" {
   cidr_block           = var.cidr_block
   project_name         = var.project_name
   tags                 = var.tags
-  vpc_additional_cidrs = var.vpc_additional_cidrs
   public_subnets       = var.public_subnets
   private_subnets      = var.private_subnets
 }
