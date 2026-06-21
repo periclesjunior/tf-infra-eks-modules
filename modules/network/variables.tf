@@ -12,9 +12,3 @@ variable "tags" {
   description = "Tags to be added to AWS resources"
   type        = map(any)
 }
-
-variable "vpc_additional_cidrs" {
-  description = "List of additional VPC CIDRs"
-  type        = list(string)
-  default     = []
-}

@@ -68,7 +68,6 @@ No resources.
 | <a name="input_region"></a> [region](#input\_region) | AWS region to create the resources | `string` | `"us-east-1"` | no |
 | <a name="input_service_ipv4_cidr"></a> [service\_ipv4\_cidr](#input\_service\_ipv4\_cidr) | The CIDR block to assign Kubernetes pod and service IP addresses | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all AWS resources | `map(any)` | n/a | yes |
-| <a name="input_vpc_additional_cidrs"></a> [vpc\_additional\_cidrs](#input\_vpc\_additional\_cidrs) | List of additional VPC CIDRs | `list(string)` | n/a | yes |
 
 ## Outputs
 
