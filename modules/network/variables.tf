@@ -12,3 +12,21 @@ variable "tags" {
   description = "Tags to be added to AWS resources"
   type        = map(any)
 }
+
+variable "public_subnets" {
+  description = "List of VPC Public Subnets"
+  type = list(object({
+    name              = string
+    cidr              = string
+    availability_zone = string
+  }))
+}
+
+variable "private_subnets" {
+  description = "List of VPC Private Subnets"
+  type = list(object({
+    name              = string
+    cidr              = string
+    availability_zone = string
+  }))
+}
