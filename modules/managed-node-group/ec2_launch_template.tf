@@ -1,6 +1,8 @@
 resource "aws_launch_template" "eks_nodes" {
   name_prefix = "eks-custom-nodes-"
 
+  user_data = base64encode(local.nodeadm_user_data)
+
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
@@ -12,4 +14,10 @@ resource "aws_launch_template" "eks_nodes" {
       delete_on_termination = true
     }
   }
+tags = merge(
+    var.tags,
+    {
+      Name = "${var.project_name}-lt"
+    }
+  )
 }

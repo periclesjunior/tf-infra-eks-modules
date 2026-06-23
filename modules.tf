@@ -29,6 +29,7 @@ module "eks_managed_node_group" {
   auto_scale_options = var.auto_scale_options
   disk_size          = var.disk_size
   ami_type           = var.ami_type
+  max_pods           = var.max_pods
   instance_types     = var.instance_types
   capacity_type      = var.capacity_type
 }
