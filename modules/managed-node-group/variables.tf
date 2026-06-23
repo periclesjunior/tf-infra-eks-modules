@@ -46,3 +46,9 @@ variable "disk_size" {
   description = "Disk size"
   type        = string
 }
+
+variable "max_pods" {
+  description = "Maximum number of pods per node configured through AL2023 nodeadm kubelet config."
+  type        = number
+  default     = 110
+}

@@ -1,10 +1,10 @@
 module "eks_network" {
-  source               = "./modules/network"
-  cidr_block           = var.cidr_block
-  project_name         = var.project_name
-  tags                 = var.tags
-  public_subnets       = var.public_subnets
-  private_subnets      = var.private_subnets
+  source          = "./modules/network"
+  cidr_block      = var.cidr_block
+  project_name    = var.project_name
+  tags            = var.tags
+  public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
 }
 
 # Public subnet_ids for home labs
@@ -29,6 +29,7 @@ module "eks_managed_node_group" {
   auto_scale_options = var.auto_scale_options
   disk_size          = var.disk_size
   ami_type           = var.ami_type
+  max_pods           = var.max_pods
   instance_types     = var.instance_types
   capacity_type      = var.capacity_type
 }

@@ -75,6 +75,12 @@ variable "disk_size" {
   default     = "100"
 }
 
+variable "max_pods" {
+  description = "Maximum number of pods per node for AL2023 mng"
+  type        = number
+  default     = 110
+}
+
 variable "cluster_version" {
   description = "Cluster Version"
   type        = string
