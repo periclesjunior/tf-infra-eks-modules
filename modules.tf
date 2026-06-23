@@ -1,10 +1,10 @@
 module "eks_network" {
-  source               = "./modules/network"
-  cidr_block           = var.cidr_block
-  project_name         = var.project_name
-  tags                 = var.tags
-  public_subnets       = var.public_subnets
-  private_subnets      = var.private_subnets
+  source          = "./modules/network"
+  cidr_block      = var.cidr_block
+  project_name    = var.project_name
+  tags            = var.tags
+  public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
 }
 
 # Public subnet_ids for home labs

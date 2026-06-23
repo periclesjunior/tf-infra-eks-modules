@@ -21,10 +21,10 @@ resource "aws_eks_addon" "kubeproxy" {
   addon_version               = var.addon_kubeproxy_version
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
-  
+
   depends_on = [
     aws_eks_addon.cni
-  ]  
+  ]
 }
 
 resource "aws_eks_addon" "coredns" {
@@ -34,7 +34,7 @@ resource "aws_eks_addon" "coredns" {
   addon_version               = var.addon_coredns_version
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
-  
+
   depends_on = [
     aws_eks_addon.cni,
     aws_eks_addon.kubeproxy
@@ -51,7 +51,7 @@ resource "aws_eks_addon" "ebs_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   service_account_role_arn = aws_iam_role.ebs_csi_controller.arn
-  
+
   depends_on = [
     aws_eks_addon.coredns
   ]
