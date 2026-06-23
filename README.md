@@ -64,6 +64,7 @@ No resources.
 | <a name="input_endpoint_private_access"></a> [endpoint\_private\_access](#input\_endpoint\_private\_access) | Endpoint private access | `string` | `"true"` | no |
 | <a name="input_endpoint_public_access"></a> [endpoint\_public\_access](#input\_endpoint\_public\_access) | Endpoint public access | `string` | `"true"` | no |
 | <a name="input_instance_types"></a> [instance\_types](#input\_instance\_types) | Instance types | `list(string)` | <pre>[<br/>  "t3.medium"<br/>]</pre> | no |
+| <a name="input_max_pods"></a> [max\_pods](#input\_max\_pods) | Maximum number of pods per node for AL2023 mng | `number` | `110` | no |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | List of VPC Private Subnets | <pre>list(object({<br/>    name              = string<br/>    cidr              = string<br/>    availability_zone = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name to be used to name the resources (Name tag) | `string` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | List of VPC Public Subnets | <pre>list(object({<br/>    name              = string<br/>    cidr              = string<br/>    availability_zone = string<br/>  }))</pre> | n/a | yes |
