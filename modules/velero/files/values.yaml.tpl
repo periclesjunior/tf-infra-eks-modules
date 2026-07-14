@@ -13,6 +13,14 @@ resources:
   
 dnsPolicy: ClusterFirst
 
+serviceAccount:
+  server:
+    create: false
+    name: velero
+
+credentials:
+  useSecret: false
+  
 initContainers:
 - name: velero-plugin-for-aws
   image: velero/velero-plugin-for-aws:v1.13.1

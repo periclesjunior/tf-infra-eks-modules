@@ -21,4 +21,8 @@ resource "helm_release" "eks_helm_velero" {
     })
   ]
 
+  depends_on = [
+    kubernetes_service_account_v1.eks_velero_sa,
+    aws_iam_role_policy_attachment.eks_velero_role_attachment
+  ]
 }
