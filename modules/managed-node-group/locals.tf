@@ -1,5 +1,11 @@
 locals {
-  nodeadm_user_data = <<-EOT
+  launch_template_node_groups = {
+    for name, group in var.node_groups : name => group
+    if group.create_launch_template
+  }
+
+  nodeadm_user_data = {
+    for name, group in local.launch_template_node_groups : name => <<-EOT
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="//"
 
@@ -17,8 +23,9 @@ spec:
     cidr: ${data.aws_eks_cluster.this.kubernetes_network_config[0].service_ipv4_cidr}
   kubelet:
     config:
-      maxPods: ${var.max_pods}
+      maxPods: ${group.max_pods}
 
 --//--
 EOT
+  }
 }

@@ -21,17 +21,12 @@ module "eks_cluster" {
 }
 
 module "eks_managed_node_group" {
-  source             = "./modules/managed-node-group"
-  project_name       = var.project_name
-  cluster_name       = module.eks_cluster.cluster_name
-  subnet_ids         = module.eks_network.private_subnet
-  tags               = var.tags
-  auto_scale_options = var.auto_scale_options
-  disk_size          = var.disk_size
-  ami_type           = var.ami_type
-  max_pods           = var.max_pods
-  instance_types     = var.instance_types
-  capacity_type      = var.capacity_type
+  source       = "./modules/managed-node-group"
+  project_name = var.project_name
+  cluster_name = module.eks_cluster.cluster_name
+  subnet_ids   = module.eks_network.private_subnet
+  tags         = var.tags
+  node_groups  = var.node_groups
 }
 
 module "eks_aws_lb_controller" {
