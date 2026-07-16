@@ -55,16 +55,11 @@ No resources.
 | <a name="input_addon_coredns_version"></a> [addon\_coredns\_version](#input\_addon\_coredns\_version) | CoreDNS addon version | `string` | n/a | yes |
 | <a name="input_addon_ebs_csi_version"></a> [addon\_ebs\_csi\_version](#input\_addon\_ebs\_csi\_version) | EBS CSI addon version | `string` | n/a | yes |
 | <a name="input_addon_kubeproxy_version"></a> [addon\_kubeproxy\_version](#input\_addon\_kubeproxy\_version) | Kube-Proxy addon version | `string` | n/a | yes |
-| <a name="input_ami_type"></a> [ami\_type](#input\_ami\_type) | AMI type | `string` | `"AL2023_x86_64_STANDARD"` | no |
-| <a name="input_auto_scale_options"></a> [auto\_scale\_options](#input\_auto\_scale\_options) | Cluster Autoscaling Settings | <pre>object({<br/>    min     = number<br/>    max     = number<br/>    desired = number<br/>  })</pre> | <pre>{<br/>  "desired": 1,<br/>  "max": 1,<br/>  "min": 1<br/>}</pre> | no |
-| <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type | `string` | `"ON_DEMAND"` | no |
 | <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | Networking CIDR block to be used for the VPC | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Cluster Version | `string` | `"1.35"` | no |
-| <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | Disk size | `string` | `"100"` | no |
 | <a name="input_endpoint_private_access"></a> [endpoint\_private\_access](#input\_endpoint\_private\_access) | Endpoint private access | `string` | `"true"` | no |
 | <a name="input_endpoint_public_access"></a> [endpoint\_public\_access](#input\_endpoint\_public\_access) | Endpoint public access | `string` | `"true"` | no |
-| <a name="input_instance_types"></a> [instance\_types](#input\_instance\_types) | Instance types | `list(string)` | <pre>[<br/>  "t3.medium"<br/>]</pre> | no |
-| <a name="input_max_pods"></a> [max\_pods](#input\_max\_pods) | Maximum number of pods per node for AL2023 mng | `number` | `110` | no |
+| <a name="input_node_groups"></a> [node\_groups](#input\_node\_groups) | Map of EKS managed node groups and their individual launch template, scaling, labels, taints and tags settings. | <pre>map(object({<br/>    min_size               = number<br/>    max_size               = number<br/>    desired_size           = number<br/>    create_launch_template = optional(bool, true)<br/>    launch_template_name   = optional(string)<br/>    ami_type               = optional(string, "AL2023_x86_64_STANDARD")<br/>    instance_types         = list(string)<br/>    capacity_type          = optional(string, "ON_DEMAND")<br/>    max_pods               = optional(number, 110)<br/><br/>    block_device_mappings = optional(map(object({<br/>      device_name = string<br/>      ebs = object({<br/>        volume_size           = number<br/>        volume_type           = optional(string, "gp3")<br/>        iops                  = optional(number, 3000)<br/>        throughput            = optional(number, 150)<br/>        encrypted             = optional(bool, true)<br/>        delete_on_termination = optional(bool, true)<br/>        kms_key_id            = optional(string)<br/>      })<br/>    })), {})<br/><br/>    labels = optional(map(string), {})<br/><br/>    taints = optional(list(object({<br/>      effect = string<br/>      key    = string<br/>      value  = optional(string)<br/>    })), [])<br/><br/>    tags = optional(map(string), {})<br/>  }))</pre> | `{}` | no |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | List of VPC Private Subnets | <pre>list(object({<br/>    name              = string<br/>    cidr              = string<br/>    availability_zone = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name to be used to name the resources (Name tag) | `string` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | List of VPC Public Subnets | <pre>list(object({<br/>    name              = string<br/>    cidr              = string<br/>    availability_zone = string<br/>  }))</pre> | n/a | yes |
@@ -74,5 +69,9 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_managed_node_group_arns"></a> [managed\_node\_group\_arns](#output\_managed\_node\_group\_arns) | Managed node group ARNs keyed by node group name. |
+| <a name="output_managed_node_group_ids"></a> [managed\_node\_group\_ids](#output\_managed\_node\_group\_ids) | Managed node group IDs keyed by node group name. |
+| <a name="output_managed_node_group_launch_template_ids"></a> [managed\_node\_group\_launch\_template\_ids](#output\_managed\_node\_group\_launch\_template\_ids) | Launch template IDs keyed by node group name. |
 <!-- END_TF_DOCS -->

@@ -37,48 +37,45 @@ variable "tags" {
   type        = map(any)
 }
 
-variable "auto_scale_options" {
-  description = "Cluster Autoscaling Settings"
-  type = object({
-    min     = number
-    max     = number
-    desired = number
-  })
-  default = {
-    min     = 1
-    max     = 1
-    desired = 1
-  }
-}
+variable "node_groups" {
+  description = "Map of EKS managed node groups and their individual launch template, scaling, labels, taints and tags settings."
 
-variable "ami_type" {
-  description = "AMI type"
-  type        = string
-  default     = "AL2023_x86_64_STANDARD"
-}
+  type = map(object({
+    min_size               = number
+    max_size               = number
+    desired_size           = number
+    create_launch_template = optional(bool, true)
+    launch_template_name   = optional(string)
+    ami_type               = optional(string, "AL2023_x86_64_STANDARD")
+    instance_types         = list(string)
+    capacity_type          = optional(string, "ON_DEMAND")
+    max_pods               = optional(number, 110)
 
-variable "instance_types" {
-  description = "Instance types"
-  type        = list(string)
-  default     = ["t3.medium"]
-}
+    block_device_mappings = optional(map(object({
+      device_name = string
+      ebs = object({
+        volume_size           = number
+        volume_type           = optional(string, "gp3")
+        iops                  = optional(number, 3000)
+        throughput            = optional(number, 150)
+        encrypted             = optional(bool, true)
+        delete_on_termination = optional(bool, true)
+        kms_key_id            = optional(string)
+      })
+    })), {})
 
-variable "capacity_type" {
-  description = "Capacity type"
-  type        = string
-  default     = "ON_DEMAND"
-}
+    labels = optional(map(string), {})
 
-variable "disk_size" {
-  description = "Disk size"
-  type        = string
-  default     = "100"
-}
+    taints = optional(list(object({
+      effect = string
+      key    = string
+      value  = optional(string)
+    })), [])
 
-variable "max_pods" {
-  description = "Maximum number of pods per node for AL2023 mng"
-  type        = number
-  default     = 110
+    tags = optional(map(string), {})
+  }))
+
+  default = {}
 }
 
 variable "cluster_version" {

@@ -29,18 +29,17 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_ami_type"></a> [ami\_type](#input\_ami\_type) | AMI type | `string` | n/a | yes |
-| <a name="input_auto_scale_options"></a> [auto\_scale\_options](#input\_auto\_scale\_options) | Cluster Autoscaling Settings | <pre>object({<br/>    min     = number<br/>    max     = number<br/>    desired = number<br/>  })</pre> | n/a | yes |
-| <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type | `string` | n/a | yes |
-| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | EKS cluster name to create MNG | `string` | n/a | yes |
-| <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | Disk size | `string` | n/a | yes |
-| <a name="input_instance_types"></a> [instance\_types](#input\_instance\_types) | Instance types | `list(string)` | n/a | yes |
-| <a name="input_max_pods"></a> [max\_pods](#input\_max\_pods) | Maximum number of pods per node configured through AL2023 nodeadm kubelet config. | `number` | `110` | no |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name to be used to name the resources (Name tag) | `string` | n/a | yes |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | Lits subnets ids | `list(string)` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to AWS resources | `map(any)` | n/a | yes |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | EKS cluster name. | `string` | n/a | yes |
+| <a name="input_node_groups"></a> [node\_groups](#input\_node\_groups) | Map of managed node group definitions. | <pre>map(object({<br/>    min_size               = number<br/>    max_size               = number<br/>    desired_size           = number<br/>    create_launch_template = optional(bool, true)<br/>    launch_template_name   = optional(string)<br/>    ami_type               = optional(string, "AL2023_x86_64_STANDARD")<br/>    instance_types         = list(string)<br/>    capacity_type          = optional(string, "ON_DEMAND")<br/>    max_pods               = optional(number, 110)<br/><br/>    block_device_mappings = optional(map(object({<br/>      device_name = string<br/>      ebs = object({<br/>        volume_size           = number<br/>        volume_type           = optional(string, "gp3")<br/>        iops                  = optional(number, 3000)<br/>        throughput            = optional(number, 150)<br/>        encrypted             = optional(bool, true)<br/>        delete_on_termination = optional(bool, true)<br/>        kms_key_id            = optional(string)<br/>      })<br/>    })), {})<br/><br/>    labels = optional(map(string), {})<br/><br/>    taints = optional(list(object({<br/>      effect = string<br/>      key    = string<br/>      value  = optional(string)<br/>    })), [])<br/><br/>    tags = optional(map(string), {})<br/>  }))</pre> | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name used in resource names and tags. | `string` | n/a | yes |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | Private subnet IDs used by all managed node groups. | `list(string)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Common tags added to node group resources. | `map(any)` | `{}` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_launch_template_ids"></a> [launch\_template\_ids](#output\_launch\_template\_ids) | Launch template IDs keyed by node group name. |
+| <a name="output_node_group_arns"></a> [node\_group\_arns](#output\_node\_group\_arns) | Managed node group ARNs keyed by node group name. |
+| <a name="output_node_group_ids"></a> [node\_group\_ids](#output\_node\_group\_ids) | Managed node group IDs keyed by node group name. |
 <!-- END_TF_DOCS -->

@@ -1,35 +1,48 @@
 resource "aws_eks_node_group" "eks_managed_node_group" {
+  for_each = var.node_groups
+
   cluster_name    = var.cluster_name
-  node_group_name = "${var.project_name}-nodegroup"
+  node_group_name = "${var.project_name}-${each.key}"
   node_role_arn   = aws_iam_role.eks_mng_role.arn
+  subnet_ids      = var.subnet_ids
 
-  subnet_ids = var.subnet_ids
+  ami_type       = each.value.ami_type
+  instance_types = each.value.instance_types
+  capacity_type  = each.value.capacity_type
 
-  ami_type       = var.ami_type
-  instance_types = var.instance_types
-  capacity_type  = var.capacity_type
+  dynamic "launch_template" {
+    for_each = each.value.create_launch_template ? [1] : []
 
-  launch_template {
-    id      = aws_launch_template.eks_nodes.id
-    version = aws_launch_template.eks_nodes.latest_version
+    content {
+      id      = aws_launch_template.eks_nodes[each.key].id
+      version = aws_launch_template.eks_nodes[each.key].latest_version
+    }
   }
 
   scaling_config {
-    min_size     = var.auto_scale_options.min
-    max_size     = var.auto_scale_options.max
-    desired_size = var.auto_scale_options.desired
+    min_size     = each.value.min_size
+    max_size     = each.value.max_size
+    desired_size = each.value.desired_size
   }
 
-  labels = {
-    "role"        = "app"
-    "environment" = "DEV"
-    "kind"        = "ON_DEMAND"
+  labels = each.value.labels
+
+  dynamic "taint" {
+    for_each = each.value.taints
+
+    content {
+      effect = taint.value.effect
+      key    = taint.value.key
+      value  = taint.value.value
+    }
   }
 
   tags = merge(
     var.tags,
+    each.value.tags,
     {
-      Name = "${var.project_name}-nodegroup"
+      Name      = "${var.project_name}-${each.key}"
+      NodeGroup = each.key
     }
   )
 
